@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#11120f">
+  <meta name="description" content="KAM DESIGN. Arquitectura, renderizado fotorrealista y visualización 3D. Diseño que trasciende lo imaginado, desde Cancún, México.">
+  <title>KAM DESIGN® — Arquitectura y visualización</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind para el prototipo. En producción, compilar Tailwind con CLI/Vite y eliminar este CDN. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2311120f'/%3E%3Ctext x='32' y='42' fill='%23c7b48d' font-family='Georgia' font-size='35' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <div class="preloader" id="preloader" aria-hidden="true"><span class="preloader-word">KAM<span class="preloader-mark">.</span></span><span class="preloader-caption">ARCHITECTURAL VISIONS</span></div>
+  <div class="site-shell">
+    <header class="site-header" id="site-header">
+      <a href="#inicio" class="brand" aria-label="KAM DESIGN, inicio">
+        <img class="brand-logo" src="./kam-logo-new.png" alt="KAM DESIGN">
+      </a>
+      <nav class="desktop-nav" aria-label="Navegación principal">
+        <a href="#estudio">El estudio</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#servicios">Expertise</a>
+        <a href="#proceso">Proceso</a>
+      </nav>
+      <a class="header-cta" href="https://wa.me/529986391022?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar%20un%20proyecto%20con%20KAM%20DESIGN." target="_blank" rel="noopener noreferrer"><span>Hablemos de tu proyecto</span><span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+    </header>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Navegación móvil" inert>
+      <a href="#estudio">El estudio</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#servicios">Expertise</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto">Hablemos ↗</a>
+      <span class="mobile-menu-foot">CANCÚN · MÉXICO</span>
+    </nav>
+
+    <main id="contenido">
+      <section class="hero" id="inicio" aria-label="Presentación de KAM Design">
+        <div class="hero-slider" aria-hidden="true">
+          <div class="hero-slide is-active"><div class="hero-image" style="background-image: url('https://static.wixstatic.com/media/7255e8_a17ece757216418b8c539c0b4f848a76~mv2.jpg')"></div></div>
+          <div class="hero-slide"><div class="hero-image" style="background-image: url('https://static.wixstatic.com/media/7255e8_a7ec5d7544784d07ac1f6117cf64961e~mv2.jpg')"></div></div>
+          <div class="hero-slide"><div class="hero-image" style="background-image: url('https://static.wixstatic.com/media/7255e8_65a237c4ce7d42c5b7b1943c89ce8cbc~mv2.jpg')"></div></div>
+        </div>
+        <div class="hero-shade"></div>
+        <div class="hero-grain"></div>
+        <div class="hero-side-note">EST. CANCÚN, MÉXICO <span class="note-line"></span> VISUALIZACIÓN ARQUITECTÓNICA</div>
+        <div class="hero-inner wrap">
+          <p class="eyebrow hero-eyebrow"><span class="eyebrow-rule"></span> ESTUDIO DE ARQUITECTURA & VISUALIZACIÓN 3D</p>
+          <h1>Lo extraordinario<br><em>comienza con</em><br>una visión<span class="heading-period">.</span></h1>
+          <div class="hero-bottom-copy"><p>Convertimos ideas en experiencias visuales que anticipan el futuro de cada espacio.</p><a class="link-underline light" href="#proyectos">Explorar proyectos <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <div class="hero-controls wrap">
+          <div class="hero-scroll-cue"><span class="mouse-line"></span> DESLIZA PARA DESCUBRIR</div>
+          <div class="hero-gallery-controls" aria-label="Controles de presentación">
+            <button class="slide-step" id="slide-prev" aria-label="Imagen anterior">←</button>
+            <span class="slide-index" id="slide-index">01 <span>/ 03</span></span>
+            <div class="hero-progress" id="hero-progress" aria-hidden="true"><span></span></div>
+            <button class="slide-step" id="slide-next" aria-label="Siguiente imagen">→</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 01 / Filosofía — nueva dirección editorial, contraste oscuro frente al portafolio marfil. -->
+      <section class="intro-section" id="estudio" aria-labelledby="intro-heading">
+        <span class="intro-watermark" aria-hidden="true">01</span>
+        <div class="intro-top wrap reveal">
+          <span class="section-kicker"><span class="kicker-index">01 /</span> NUESTRA FILOSOFÍA</span>
+          <span class="intro-side">ARQUITECTURA · EMOCIÓN · EXPERIENCIA</span>
+        </div>
+        <div class="intro-composition wrap">
+          <div class="intro-story">
+            <span class="intro-overline reveal"><span class="intro-overline-rule" aria-hidden="true"></span> MÁS ALLÁ DE LA FORMA</span>
+            <div class="intro-lede reveal">
+              <h2 id="intro-heading">Hay espacios que<br><span>se construyen.</span><br><em>Y otros que<br>se sienten.</em></h2>
+            </div>
+            <div class="intro-aside reveal">
+              <p>En KAM DESIGN unimos arquitectura y visualización para hacer tangible lo que todavía es una idea. Cada textura, cada luz y cada perspectiva cuenta una historia: la de tu próximo proyecto.</p>
+              <a class="link-underline light" href="#servicios">Explorar nuestros servicios <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="intro-motto reveal" aria-label="El diseño no solo se ve. Se vive.">
+              <span class="intro-motto-icon" aria-hidden="true">✳</span>
+              <span>EL DISEÑO NO SOLO SE VE.<br>SE VIVE.</span>
+            </div>
+          </div>
+          <figure class="intro-visual reveal">
+            <img src="https://static.wixstatic.com/media/7255e8_ce5daa3fc06f42d68307c1edb7309f8e~mv2.jpg" alt="Visualización arquitectónica de KAM DESIGN con especial atención a la luz y los materiales" loading="lazy" decoding="async">
+            <div class="intro-visual-scrim" aria-hidden="true"></div>
+            <div class="intro-visual-lines" aria-hidden="true"></div>
+            <div class="intro-visual-header" aria-hidden="true"><span>KAM — VISUAL STORIES</span><span>001 / 004</span></div>
+            <figcaption class="intro-visual-caption"><span>DONDE LAS IDEAS<br>COBRAN ATMÓSFERA.</span><span class="intro-caption-arrow" aria-hidden="true">↗</span></figcaption>
+          </figure>
+        </div>
+        <div class="intro-signature wrap reveal"><span>ARQUITECTURA QUE INSPIRA.</span><span>IMAGINACIÓN · PRECISIÓN · ATMÓSFERA</span><span>EST. CANCÚN, MÉXICO</span></div>
+      </section>
+      <section class="projects-section" id="proyectos">
+        <div class="wrap section-head section-head-portfolio reveal">
+          <div>
+            <span class="section-kicker"><span class="kicker-index">02 /</span> PORTAFOLIO SELECTO</span>
+            <h2>Una galería pensada<br><em>para ser contemplada.</em></h2>
+          </div>
+          <div class="portfolio-intro-copy">
+            <p>Una selección curada de visualizaciones residenciales, interiores y propuestas corporativas, presentada en una retícula limpia, luminosa y sofisticada.</p>
+            <a class="link-underline dark" href="https://www.kamdesignmx.com/blank-2" target="_blank" rel="noopener noreferrer">Ver portafolio original <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <article class="wrap portfolio-feature reveal">
+          <a href="https://www.kamdesignmx.com/blank-2" target="_blank" rel="noopener noreferrer" class="portfolio-feature-image" aria-label="Explorar proyecto destacado Casa Cantera">
+            <img loading="lazy" src="https://static.wixstatic.com/media/7255e8_a17ece757216418b8c539c0b4f848a76~mv2.jpg" alt="Proyecto destacado Casa Cantera" />
+            <span class="project-corner">FEATURED / 01</span>
+            <span class="project-view" aria-hidden="true">↗</span>
+          </a>
+          <div class="portfolio-feature-meta">
+            <div>
+              <p>RESIDENCIAL · PROYECTO DESTACADO</p>
+              <h3>Casa Cantera</h3>
+            </div>
+            <p class="portfolio-feature-summary">Materialidad cálida, luz escénica y una composición que convierte la arquitectura en una experiencia visual envolvente.</p>
+          </div>
+        </article>
+
+        <div class="wrap portfolio-grid-modern">
+          <article class="portfolio-item reveal">
+            <a href="https://www.kamdesignmx.com/blank-2" target="_blank" rel="noopener noreferrer" class="portfolio-thumb" aria-label="Explorar Casa Duna">
+              <img loading="lazy" src="https://static.wixstatic.com/media/7255e8_ce5daa3fc06f42d68307c1edb7309f8e~mv2.jpg" alt="Casa Duna, visualización residencial" />
+              <span class="portfolio-badge">RESIDENCIAL</span>
+              <span class="project-view" aria-hidden="true">↗</span>
+            </a>
+            <div class="portfolio-meta">
+              <p>RESIDENCIAL · CANCÚN</p>
+              <h3>Casa Duna</h3>
+              <span>ATMÓSFERA · LUZ · DETALLE</span>
+            </div>
+          </article>
+
+          <article class="portfolio-item reveal">
+            <a href="https://www.kamdesignmx.com/blank-2" target="_blank" rel="noopener noreferrer" class="portfolio-thumb" aria-label="Explorar Oficina Corporativa">
+              <img loading="lazy" src="https://static.wixstatic.com/media/7255e8_a7ec5d7544784d07ac1f6117cf64961e~mv2.jpg" alt="Oficina corporativa renderizada por KAM Design" />
+              <span class="portfolio-badge">CORPORATIVO</span>
+              <span class="project-view" aria-hidden="true">↗</span>
+            </a>
+            <div class="portfolio-meta">
+              <p>CORPORATIVO · VISUALIZACIÓN</p>
+              <h3>Oficina Corporativa</h3>
+              <span>DISEÑO · IMAGEN · PROFUNDIDAD</span>
+            </div>
+          </article>
+
+          <article class="portfolio-item reveal">
+            <a href="https://www.kamdesignmx.com/blank-2" target="_blank" rel="noopener noreferrer" class="portfolio-thumb" aria-label="Explorar Cocina Contemporánea">
+              <img loading="lazy" src="https://static.wixstatic.com/media/7255e8_6f38b3d6be9b452a85ed50e5c43a2609~mv2.jpg" alt="Cocina contemporánea, visualización interior" />
+              <span class="portfolio-badge">INTERIORES</span>
+              <span class="project-view" aria-hidden="true">↗</span>
+            </a>
+            <div class="portfolio-meta">
+              <p>INTERIORES · VISUALIZACIÓN</p>
+              <h3>Cocina Contemporánea</h3>
+              <span>MATERIALES · COMPOSICIÓN · CALIDEZ</span>
+            </div>
+          </article>
+
+          <article class="portfolio-item reveal">
+            <a href="https://www.kamdesignmx.com/blank-2" target="_blank" rel="noopener noreferrer" class="portfolio-thumb" aria-label="Explorar Exterior Residencial">
+              <img loading="lazy" src="https://static.wixstatic.com/media/7255e8_65a237c4ce7d42c5b7b1943c89ce8cbc~mv2.jpg" alt="Exterior residencial contemporáneo" />
+              <span class="portfolio-badge">EXTERIOR</span>
+              <span class="project-view" aria-hidden="true">↗</span>
+            </a>
+            <div class="portfolio-meta">
+              <p>ARQUITECTURA · VISUALIZACIÓN</p>
+              <h3>Exterior Residencial</h3>
+              <span>FACHADA · ESCALA · CARÁCTER</span>
+            </div>
+          </article>
+
+          <article class="portfolio-item reveal">
+            <a href="https://www.kamdesignmx.com/blank-2" target="_blank" rel="noopener noreferrer" class="portfolio-thumb" aria-label="Explorar Composición Arquitectónica">
+              <img loading="lazy" src="https://static.wixstatic.com/media/7255e8_a17ece757216418b8c539c0b4f848a76~mv2.jpg" alt="Composición arquitectónica contemporánea" />
+              <span class="portfolio-badge">CURATED VIEW</span>
+              <span class="project-view" aria-hidden="true">↗</span>
+            </a>
+            <div class="portfolio-meta">
+              <p>CURATORÍA · VISUAL STORY</p>
+              <h3>Composición Arquitectónica</h3>
+              <span>ENCUADRE · LUMINOSIDAD · PRESENCIA</span>
+            </div>
+          </article>
+
+          <article class="portfolio-item reveal">
+            <a href="https://www.kamdesignmx.com/blank-2" target="_blank" rel="noopener noreferrer" class="portfolio-thumb" aria-label="Explorar Residencia Panorama">
+              <img loading="lazy" src="https://static.wixstatic.com/media/7255e8_a7ec5d7544784d07ac1f6117cf64961e~mv2.jpg" alt="Residencia Panorama, visualización arquitectónica" />
+              <span class="portfolio-badge">RESIDENCIA</span>
+              <span class="project-view" aria-hidden="true">↗</span>
+            </a>
+            <div class="portfolio-meta">
+              <p>RESIDENCIAL · CURATED EDIT</p>
+              <h3>Residencia Panorama</h3>
+              <span>VOLUMEN · CLARIDAD · HORIZONTE</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="manifesto-image" aria-label="Nuestra manera de ver la arquitectura">
+        <div class="manifesto-photo"></div><div class="manifesto-overlay"></div>
+        <div class="wrap manifesto-content reveal"><span class="section-kicker">LA VISIÓN KAM</span><h2>No mostramos edificios.<br><em>Revelamos posibilidades.</em></h2><span class="manifesto-arrow" aria-hidden="true">↗</span></div>
+      </section>
+
+
+      <section class="team-section" id="equipo" aria-labelledby="team-heading">
+        <div class="wrap team-shell">
+          <div class="team-header reveal">
+            <div>
+              <span class="section-kicker team-kicker">NÚCLEO KAM · DIRECCIÓN & CONSULTORÍA</span>
+              <h2 id="team-heading">El equipo que convierte<br><em>visión en presencia.</em></h2>
+            </div>
+            <p>Un estudio multidisciplinario donde arquitectura, visualización, estrategia y precisión técnica trabajan en conjunto para elevar cada proyecto desde la primera idea hasta su expresión final.</p>
+          </div>
+          <div class="team-grid">
+            <article class="team-card reveal">
+              <span class="team-initials">KC</span>
+              <h3>Karla Camacho</h3>
+              <h4>Dirección creativa · Fundadora</h4>
+              <p>Define la visión conceptual del estudio, el lenguaje visual y la narrativa espacial de cada proyecto.</p>
+            </article>
+            <article class="team-card reveal">
+              <span class="team-initials">AR</span>
+              <h3>Andrés Romero</h3>
+              <h4>Arquitectura · Diseño</h4>
+              <p>Traduce ideas en soluciones arquitectónicas claras, equilibradas y técnicamente viables.</p>
+            </article>
+            <article class="team-card reveal">
+              <span class="team-initials">LV</span>
+              <h3>Lucía Vega</h3>
+              <h4>Visualización 3D · Socia</h4>
+              <p>Construye atmósferas, materiales e iluminación para que cada espacio se perciba antes de existir.</p>
+            </article>
+            <article class="team-card reveal">
+              <span class="team-initials team-initials-muted">CM</span>
+              <h3>Carlos Medina</h3>
+              <h4>Coordinación · Producción</h4>
+              <p>Gestiona tiempos, entregables y consistencia en cada etapa del proceso creativo y técnico.</p>
+            </article>
+            <article class="team-card reveal">
+              <span class="team-initials">SG</span>
+              <h3>Sofía Gómez</h3>
+              <h4>Estrategia · Cliente</h4>
+              <p>Acompaña la comunicación con clientes y asegura que cada solución responda a objetivos reales.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+            <section class="services-section" id="servicios">
+        <div class="wrap service-heading service-heading-modern reveal">
+          <div>
+            <span class="section-kicker"><span class="kicker-index">03 /</span> NUESTRA EXPERTISE</span>
+            <h2>Servicios diseñados<br><em>con mirada editorial.</em></h2>
+          </div>
+          <p>Presentamos nuestras capacidades principales como una colección visual: clara, elegante y pensada para que cada especialidad respire con su propia presencia.</p>
+        </div>
+
+        <article class="wrap expertise-feature reveal">
+          <a href="https://www.kamdesignmx.com/blank-1-1" target="_blank" rel="noopener noreferrer" class="expertise-feature-image" aria-label="Conocer servicio de renderizado fotorrealista">
+            <img loading="lazy" src="https://static.wixstatic.com/media/7255e8_a17ece757216418b8c539c0b4f848a76~mv2.jpg" alt="Renderizado fotorrealista de KAM Design" />
+            <span class="project-corner">SIGNATURE SERVICE / 01</span>
+            <span class="project-view" aria-hidden="true">↗</span>
+          </a>
+          <div class="expertise-feature-meta">
+            <div>
+              <p>VISUALIZACIÓN · SERVICIO DESTACADO</p>
+              <h3>Renderizado fotorrealista</h3>
+            </div>
+            <p class="expertise-feature-summary">Imágenes de alto impacto que transmiten atmósfera, materialidad e intención arquitectónica con un acabado sofisticado y persuasivo.</p>
+          </div>
+        </article>
+
+        <div class="wrap expertise-grid-modern">
+          <article class="expertise-item reveal">
+            <a href="https://www.kamdesignmx.com/blank-1-1" target="_blank" rel="noopener noreferrer" class="expertise-thumb" aria-label="Conocer servicio de diseño arquitectónico">
+              <img loading="lazy" src="https://static.wixstatic.com/media/7255e8_65a237c4ce7d42c5b7b1943c89ce8cbc~mv2.jpg" alt="Diseño arquitectónico contemporáneo" />
+              <span class="portfolio-badge">ARQUITECTURA</span>
+              <span class="project-view" aria-hidden="true">↗</span>
+            </a>
+            <div class="expertise-meta">
+              <p>CONCEPTO · ESPACIO</p>
+              <h3>Diseño arquitectónico</h3>
+              <span>Ideas que se convierten en espacios coherentes, funcionales y visualmente memorables.</span>
+            </div>
+          </article>
+
+          <article class="expertise-item reveal">
+            <a href="https://www.kamdesignmx.com/blank-1-1" target="_blank" rel="noopener noreferrer" class="expertise-thumb" aria-label="Conocer servicio de modelado 3D">
+              <img loading="lazy" src="https://static.wixstatic.com/media/7255e8_ce5daa3fc06f42d68307c1edb7309f8e~mv2.jpg" alt="Modelado 3D arquitectónico" />
+              <span class="portfolio-badge">MODELADO 3D</span>
+              <span class="project-view" aria-hidden="true">↗</span>
+            </a>
+            <div class="expertise-meta">
+              <p>VOLUMETRÍA · DETALLE</p>
+              <h3>Modelado 3D</h3>
+              <span>Desarrollo tridimensional preciso para comunicar forma, proporción y composición.</span>
+            </div>
+          </article>
+
+          <article class="expertise-item reveal">
+            <a href="https://www.kamdesignmx.com/blank-1-1" target="_blank" rel="noopener noreferrer" class="expertise-thumb" aria-label="Conocer servicio de anteproyecto y ejecutivo">
+              <img loading="lazy" src="https://static.wixstatic.com/media/7255e8_a7ec5d7544784d07ac1f6117cf64961e~mv2.jpg" alt="Anteproyecto y proyecto ejecutivo" />
+              <span class="portfolio-badge">PLANEACIÓN</span>
+              <span class="project-view" aria-hidden="true">↗</span>
+            </a>
+            <div class="expertise-meta">
+              <p>DOCUMENTACIÓN · DESARROLLO</p>
+              <h3>Anteproyecto y ejecutivo</h3>
+              <span>Definición técnica y gráfica para llevar cada propuesta del concepto a una base sólida.</span>
+            </div>
+          </article>
+
+          <article class="expertise-item reveal">
+            <a href="https://www.kamdesignmx.com/blank-1-1" target="_blank" rel="noopener noreferrer" class="expertise-thumb" aria-label="Conocer servicio de animación arquitectónica">
+              <img loading="lazy" src="https://static.wixstatic.com/media/7255e8_6f38b3d6be9b452a85ed50e5c43a2609~mv2.jpg" alt="Animación arquitectónica e interiores" />
+              <span class="portfolio-badge">ANIMACIÓN</span>
+              <span class="project-view" aria-hidden="true">↗</span>
+            </a>
+            <div class="expertise-meta">
+              <p>MOVIMIENTO · NARRATIVA</p>
+              <h3>Animación arquitectónica</h3>
+              <span>Recorridos visuales que revelan secuencia, atmósfera y experiencia espacial.</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+                  <section class="approach-section" id="proceso">
+        <div class="approach-scene" aria-hidden="true">
+          <div class="approach-scene-photo"></div>
+          <div class="approach-scene-grid"></div>
+          <div class="approach-scene-vignette"></div>
+          <div class="approach-scene-floor"></div>
+          <div class="approach-scene-shadow"></div>
+        </div>
+        <div class="wrap approach-stage">
+          <div class="approach-heading reveal">
+            <div class="approach-heading-copy">
+              <span class="section-kicker"><span class="kicker-index">04 /</span> CÓMO TRABAJAMOS</span>
+              <h2>De la primera idea<br><em>al último detalle.</em></h2>
+              <p>Un proceso claro y colaborativo para que cada decisión acerque el proyecto a su mejor versión.</p>
+            </div>
+            <div class="approach-heading-visual" aria-hidden="true">
+              <span class="approach-chip">CLARIDAD · RITMO · CONTROL</span>
+            </div>
+          </div>
+          <div class="steps-grid">
+            <div class="step reveal"><span class="step-no">01 <span>—</span></span><h3>Escuchamos</h3><p>Entendemos tu visión, necesidades, alcance y referencias.</p></div>
+            <div class="step reveal"><span class="step-no">02 <span>—</span></span><h3>Conceptualizamos</h3><p>Exploramos el lenguaje, la distribución y la intención del espacio.</p></div>
+            <div class="step reveal"><span class="step-no">03 <span>—</span></span><h3>Visualizamos</h3><p>Trabajamos materiales, iluminación, perspectivas y atmósfera.</p></div>
+            <div class="step reveal"><span class="step-no">04 <span>—</span></span><h3>Perfeccionamos</h3><p>Afinamos detalles y preparamos las entregas acordadas.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section" id="contacto"><div class="contact-texture"></div><div class="wrap contact-content"><div class="reveal"><span class="section-kicker"><span class="kicker-index">05 /</span> COMENCEMOS ALGO EXTRAORDINARIO</span><h2>Tu próxima gran idea<br><em>merece cobrar vida.</em></h2></div><div class="contact-bottom reveal"><p>Cuéntanos qué imaginas. Nosotros te ayudamos a visualizar lo que viene.</p><a class="contact-pill" href="https://wa.me/529986391022?text=Hola%2C%20quiero%20platicar%20sobre%20mi%20proyecto%20con%20KAM%20DESIGN." target="_blank" rel="noopener noreferrer">Iniciar conversación <span aria-hidden="true">↗</span></a></div></div></section>
+    </main>
+
+        <footer class="site-footer">
+      <div class="footer-shell">
+        <div class="wrap footer-grid">
+          <div class="footer-about">
+            <a href="#inicio" class="footer-brand-lockup" aria-label="Volver al inicio">
+              <img class="footer-logo-img" src="./kam-logo-new.png" loading="lazy" alt="KAM DESIGN">
+            </a>
+            <p>Estudio de visualización arquitectónica de alta gama, dirección de arte espacial y consultoría BIM. Materializamos visiones monumentales con precisión editorial.</p>
+            <div class="footer-social-icons">
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-circle social-ig"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5.2" fill="none" stroke="currentColor" stroke-width="1.8"></rect><circle cx="12" cy="12" r="3.7" fill="none" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17.6" cy="6.7" r="1" fill="currentColor"></circle></svg></a>
+              <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="social-circle social-yt"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.2c0 2.2-.3 3.8-.7 4.6-.4.8-1 1.4-1.8 1.8-.9.4-3.6.7-6.5.7s-5.6-.3-6.5-.7c-.8-.4-1.4-1-1.8-1.8-.4-.8-.7-2.4-.7-4.6s.3-3.8.7-4.6c.4-.8 1-1.4 1.8-1.8.9-.4 3.6-.7 6.5-.7s5.6.3 6.5.7c.8.4 1.4 1 1.8 1.8.4.8.7 2.4.7 4.6Z" fill="currentColor"></path><path d="M10 9.1 15.2 12 10 14.9Z" fill="#11120f"></path></svg></a>
+              <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="social-circle social-tt"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.8 4c.6 1.9 1.8 3 3.7 3.2v2.7c-1.3 0-2.5-.3-3.7-1V14c0 3-1.8 5.1-4.8 5.1A4.7 4.7 0 0 1 5.3 14a4.7 4.7 0 0 1 6.5-4.4v2.9a2.1 2.1 0 0 0-1.4-.5 2 2 0 0 0-2 2 2 2 0 0 0 2 2c1.4 0 2.1-1 2.1-2.5V4h2.3Z" fill="currentColor"></path></svg></a>
+              <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-circle social-fb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.6 20v-7h2.3l.4-2.7h-2.7V8.6c0-.8.2-1.3 1.4-1.3h1.5V4.9c-.3 0-1.1-.1-2.1-.1-2 0-3.4 1.2-3.4 3.6v2h-2.3V13H11V20h2.6Z" fill="currentColor"></path></svg></a>
+            </div>
+          </div>
+
+          <div class="footer-studios">
+            <span class="footer-column-title">Estudios</span>
+            <div class="footer-studio-block">
+              <h4>Cancún</h4>
+              <p>Av. Bonampak & Puerto Cancún,<br>Quintana Roo, México</p>
+              <a href="mailto:info@kamdesignmx.com">info@kamdesignmx.com</a>
+            </div>
+            <div class="footer-studio-block">
+              <h4>Contacto directo</h4>
+              <p>Consulta disponibilidad y alcances de proyecto.</p>
+              <a href="https://wa.me/529986391022" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+            </div>
+          </div>
+
+          <nav class="footer-nav" aria-label="Navegación secundaria">
+            <span class="footer-column-title">Navegación</span>
+            <a href="#servicios">Servicios</a>
+            <a href="#proyectos">Portafolio</a>
+            <a href="#proceso">Proceso</a>
+            <a href="#estudio">Estudio</a>
+            <a href="#contacto">Contacto</a>
+          </nav>
+
+          <div class="footer-newsletter">
+            <span class="footer-column-title">Newsletter</span>
+            <p>Reciba monografías arquitectónicas exclusivas y lanzamientos selectos.</p>
+            <form class="newsletter-form" action="#" method="post" onsubmit="return false;">
+              <input type="email" name="email" placeholder="Correo corporativo" aria-label="Correo corporativo">
+              <button type="submit">Unirse</button>
+            </form>
+          </div>
+        </div>
+        <div class="wrap footer-legal">
+          <span>© <span id="footer-year">2026</span> KAM DESIGN. Todos los derechos reservados.</span>
+          <div class="footer-legal-links">
+            <a href="#">Aviso de privacidad</a>
+            <a href="#">Términos y condiciones</a>
+            <a href="#inicio">Créditos arquitectónicos</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script defer src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "kam-design-luxury",
+  "version": "1.0.0",
+  "private": true,
+  "description": "KAM DESIGN — Arquitectura, visualización 3D y diseño de lujo",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": [
+    "architecture",
+    "luxury",
+    "visualization",
+    "portfolio",
+    "3d-render"
+  ],
+  "author": "KAM DESIGN",
+  "license": "UNLICENSED"
+}
