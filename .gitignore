@@ -1,5 +1,10 @@
 # Archivos temporales y de gran tamaño de compilación local
 demo_archivo_unico.html
+assets/*.png
+assets/*.jpg
+assets/VIDEO PRODUCTO 1.mp4
+assets/PPRACTICE KAM DESIGN.mp4
+assets/kam-hero-reel.mp4
 
 # Dependencias y entornos
 node_modules/
