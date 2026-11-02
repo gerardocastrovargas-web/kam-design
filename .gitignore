@@ -1,5 +1,6 @@
 # Archivos temporales y de gran tamaño de compilación local
 demo_archivo_unico.html
+RECURSOS/
 assets/*.png
 assets/*.jpg
 assets/VIDEO PRODUCTO 1.mp4
