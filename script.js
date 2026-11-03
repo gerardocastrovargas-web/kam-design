@@ -508,7 +508,34 @@
     });
   });
 
-  // --- 8. Auto-update Footer Year ---
+  // --- 8. Portfolio Category Filter (portafolio.html) ---
+  const filterBtns = $$('.filter-btn');
+  const filterableItems = $$('[data-category]');
+
+  if (filterBtns.length && filterableItems.length) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.getAttribute('data-filter');
+
+        filterBtns.forEach(b => {
+          const isCurrent = b === btn;
+          b.classList.toggle('is-active', isCurrent);
+          b.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+        });
+
+        filterableItems.forEach(item => {
+          const itemCat = item.getAttribute('data-category');
+          const shouldShow = category === 'all' || itemCat === category;
+          item.classList.toggle('is-filtered-out', !shouldShow);
+          if (shouldShow) {
+            item.classList.add('in-view');
+          }
+        });
+      });
+    });
+  }
+
+  // --- 9. Auto-update Footer Year ---
   const footerYear = $('#footer-year');
   if (footerYear) footerYear.textContent = String(new Date().getFullYear());
 
