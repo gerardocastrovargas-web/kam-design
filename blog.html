@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="./styles.css?v=1.0.9">
+  <link rel="stylesheet" href="./styles.css?v=1.1.0">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0d0a'/%3E%3Ctext x='32' y='42' fill='%23c4b38a' font-family='Georgia' font-size='35' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
 </head>
 <body class="blog-page">
@@ -70,19 +70,19 @@
       </div>
     </nav>
 
-    <main id="contenido-blog" style="padding-top: 130px;">
+    <main id="contenido-blog" class="blog-main">
       <!-- Hero de Sección Blog -->
-      <section class="blog-hero" style="padding: 60px 0 40px; border-bottom: 1px solid var(--border-dark);">
+      <section class="blog-hero">
         <div class="wrap">
           <div style="max-width: 860px;">
             <span class="section-kicker"><span class="kicker-index">JOURNAL & PERSPECTIVAS /</span> ARTÍCULOS TÉCNICOS & CGI</span>
-            <h1 style="font-family: var(--serif); font-size: clamp(44px, 6vw, 84px); line-height: 1.02; letter-spacing: -0.04em; font-weight: 400; margin: 24px 0 24px;">
+            <h1 class="blog-hero-title">
               Explorando las fronteras del 3D,<br><em style="font-style: italic; color: var(--gold-lite);">la arquitectura y la técnica.</em>
             </h1>
-            <p style="font-size: 16px; line-height: 1.9; color: var(--muted-light); margin: 0 0 32px; max-width: 720px;">
+            <p class="blog-hero-desc">
               Análisis sobre motores en tiempo real como Twinmotion 2025, modelado de precisión con SketchUp, guías de iluminación volumétrica, recursos descargables gratuitos y arquitectura modular sustentable desde nuestro estudio en Cancún.
             </p>
-            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <div class="blog-hero-actions">
               <a href="#articulos" class="blog-external-btn">
                 <span>Explorar Artículos & Recursos</span>
                 <span aria-hidden="true">↓</span>
@@ -96,7 +96,7 @@
       </section>
 
       <!-- Contenido Principal del Blog -->
-      <section class="blog-section" id="articulos" style="padding: 70px 0 120px; border-top: none;">
+      <section class="blog-section" id="articulos">
         <div class="wrap">
           <div class="blog-layout">
             <!-- Artículo Destacado Principal (Lead Story) -->
@@ -221,17 +221,17 @@
       </section>
 
       <!-- Banner de Conversión / Contacto -->
-      <section style="background: var(--charcoal); border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark); padding: 80px 0;">
-        <div class="wrap" style="display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap;">
+      <section class="blog-cta-banner">
+        <div class="wrap blog-cta-banner-inner">
           <div>
             <span class="section-kicker">¿TIENES UN PROYECTO ARQUITECTÓNICO?</span>
-            <h2 style="font-family: var(--serif); font-size: clamp(34px, 4.5vw, 56px); margin: 12px 0; font-weight: 400; color: var(--white);">
+            <h2 class="blog-cta-banner-title">
               Llevemos tus ideas al siguiente nivel visual.
             </h2>
             <p style="color: var(--muted-light); margin: 0; font-size: 14px;">Cotiza renders fotorrealistas, animaciones o asesoría técnica con nuestro equipo.</p>
           </div>
-          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-            <a class="header-cta" href="https://wa.me/529986391022?text=Hola%2C%20le%C3%AD%20su%20blog%20y%20me%20gustar%C3%ADa%20cotizar%20un%20proyecto." target="_blank" rel="noopener noreferrer">
+          <div class="blog-cta-banner-actions">
+            <a class="blog-external-btn" href="https://wa.me/529986391022?text=Hola%2C%20le%C3%AD%20su%20blog%20y%20me%20gustar%C3%ADa%20cotizar%20un%20proyecto." target="_blank" rel="noopener noreferrer" style="background: var(--gold); color: var(--deep); border-color: var(--gold);">
               <span>Conversar por WhatsApp</span>
               <span aria-hidden="true">↗</span>
             </a>
