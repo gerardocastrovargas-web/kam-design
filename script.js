@@ -287,7 +287,22 @@
         </ul>
 
         <blockquote>“La sinergia entre Twinmotion 2025.1.2 y SketchUp 2024 ejemplifica posibilidades extraordinarias en la comunicación visual arquitectónica y automotriz.”</blockquote>
-      `
+      `,
+      comments: [
+        {
+          name: 'Arq. Roberto Méndez',
+          role: 'Director de Proyecto · Mérida',
+          date: '5 Feb 2025',
+          text: 'Increíble el nivel de reflejos sobre la pintura automotriz y el concreto pulido. ¿Utilizaron Lumen o Path Tracer para la entrega final de esta escena?',
+          reply: '¡Gracias Roberto! Para las tomas estáticas finales utilizamos Path Tracer a 512 samples con rebotes en 10, y Lumen para el recorrido previo con el cliente.'
+        },
+        {
+          name: 'Diego Villalobos',
+          role: 'Artista 3D & Visualizador',
+          date: '14 Feb 2025',
+          text: 'El flujo entre SketchUp 2024 y Twinmotion 2025 con Datasmith mejoró muchísimo. Excelente dirección de arte en la estructura metálica del hangar.'
+        }
+      ]
     },
     'apple-cabin': {
       kicker: 'PROYECTOS ECOLÓGICOS · CANCÚN',
@@ -321,7 +336,16 @@
           <li><strong>Transporte e Instalación:</strong> Logística de traslado y montaje rápido en sitio.</li>
           <li><strong>Entrega Llave en Mano:</strong> Inspección final y puesta en marcha de la oficina corporativa.</li>
         </ol>
-      `
+      `,
+      comments: [
+        {
+          name: 'Lic. Mariana Torres',
+          role: 'Desarrolladora Inmobiliaria · Riviera Maya',
+          date: '10 Dic 2024',
+          text: 'Me encanta este concepto para instalar un showroom de preventa en Tulum sin invadir el terreno. ¿Manejan también la visualización del interior amueblado?',
+          reply: '¡Hola Mariana! Así es, desarrollamos tanto la propuesta exterior en el terreno real como el interiorismo completo para showrooms y oficinas.'
+        }
+      ]
     },
     'nubes-volumetricas': {
       kicker: 'TWINMOTION GURU · TUTORIAL PASO A PASO',
@@ -351,7 +375,21 @@
         </ul>
 
         <blockquote>“El equilibrio es clave: las nubes volumétricas deben enmarcar y exaltar la arquitectura sin robarle el punto focal al proyecto.”</blockquote>
-      `
+      `,
+      comments: [
+        {
+          name: 'Arq. Carlos Salgado',
+          role: 'Visualizador Arquitectónico',
+          date: '4 Ene 2025',
+          text: 'El tip de combinar la cobertura al 60% con niebla exponencial en Golden Hour cambió por completo mis renders exteriores. ¡Excelente aporte!'
+        },
+        {
+          name: 'Fernanda Ruiz',
+          role: 'Estudiante de Arquitectura',
+          date: '19 Ene 2025',
+          text: 'Muchas gracias por explicar los valores exactos de densidad y altitud, siempre me quedaban demasiado oscuras las nubes antes de leer esta guía.'
+        }
+      ]
     },
     'camiones-gratis': {
       kicker: 'RECURSOS 3D COMUNIDAD · FREE ASSET',
@@ -374,7 +412,15 @@
 
         <h3>¿Cómo obtener los modelos?</h3>
         <p>En <strong>KAM DESIGN®</strong> compartimos periódicamente bibliotecas y bloques 3D gratuitos con nuestra comunidad. Haz clic en el botón inferior para solicitar el enlace directo de descarga o síguenos en nuestro canal oficial de YouTube para acceder a todos los recursos.</p>
-      `
+      `,
+      comments: [
+        {
+          name: 'Ing. Jorge Paniagua',
+          role: 'Proyectos Industriales & Logísticos',
+          date: '20 Mar 2025',
+          text: 'Justo estábamos armando el render de un parque industrial y estos modelos nos vinieron de maravilla. Muy ligeros para el viewport.'
+        }
+      ]
     },
     'twinmotion-guru': {
       kicker: 'COLABORADOR DESTACADO · WORKFLOW & CGI',
@@ -403,8 +449,52 @@
             <span aria-hidden="true">↗</span>
           </a>
         </div>
-      `
+      `,
+      comments: [
+        {
+          name: 'Arq. Sofía Vega',
+          role: 'Interiorismo & CGI · Cancún',
+          date: '8 Ene 2025',
+          text: '¡La librería está brutal! Me ahorró muchísimo tiempo configurando materiales y vegetación en mi última entrega residencial. ¡Gracias equipo KAM!'
+        }
+      ]
     }
+  };
+
+  const COMMENTS_STORAGE_KEY = 'kam_blog_comments_v1';
+
+  const getStoredComments = () => {
+    try {
+      const raw = localStorage.getItem(COMMENTS_STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch {
+      return {};
+    }
+  };
+
+  const saveStoredComment = (postKey, commentObj) => {
+    try {
+      const all = getStoredComments();
+      if (!Array.isArray(all[postKey])) all[postKey] = [];
+      all[postKey].push(commentObj);
+      localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(all));
+    } catch (err) {
+      console.error('Could not save comment:', err);
+    }
+  };
+
+  const escapeHtml = (str) => String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+  const getInitials = (name) => {
+    const clean = String(name || 'Usuario').replace(/^(Arq\.|Ing\.|Lic\.)\s*/i, '').trim();
+    const parts = clean.split(/\s+/).filter(Boolean);
+    if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
+    return clean.slice(0, 2).toUpperCase() || 'KM';
   };
 
   const blogOrder = ['classic-car', 'apple-cabin', 'nubes-volumetricas', 'camiones-gratis', 'twinmotion-guru'];
@@ -424,6 +514,106 @@
   const blogModalClose = $('#blog-modal-close');
   const blogModalPrev = $('#blog-modal-prev');
   const blogModalNext = $('#blog-modal-next');
+  const blogCommentsList = $('#blog-comments-list');
+  const blogCommentsCount = $('#blog-comments-count');
+  const blogCommentsTopCount = $('#blog-modal-comments-topcount');
+  const blogCommentsJump = $('#blog-modal-comments-jump');
+  const blogCommentForm = $('#blog-comment-form');
+  const blogCommentFeedback = $('#blog-comment-feedback');
+
+  const renderBlogComments = (key, highlightLast = false) => {
+    const post = blogPostsData[key];
+    if (!post || !blogCommentsList) return;
+
+    const stored = getStoredComments()[key] || [];
+    const merged = [...(post.comments || []), ...stored];
+
+    if (blogCommentsCount) blogCommentsCount.textContent = String(merged.length);
+    if (blogCommentsTopCount) blogCommentsTopCount.textContent = String(merged.length);
+
+    if (!merged.length) {
+      blogCommentsList.innerHTML = `<p class="blog-comments-empty">Sé el primero en comentar esta entrada.</p>`;
+      return;
+    }
+
+    blogCommentsList.innerHTML = merged.map((c, idx) => {
+      const isNew = highlightLast && idx === merged.length - 1;
+      const roleHtml = c.role ? `<span class="comment-author-role">${escapeHtml(c.role)}</span>` : '';
+      const replyHtml = c.reply ? `
+        <div class="comment-studio-reply">
+          <span class="comment-reply-badge">RESPUESTA · KAM DESIGN®</span>
+          <p>${escapeHtml(c.reply)}</p>
+        </div>
+      ` : '';
+      return `
+        <article class="blog-comment-item${isNew ? ' is-new-comment' : ''}">
+          <div class="comment-avatar" aria-hidden="true">${escapeHtml(getInitials(c.name))}</div>
+          <div class="comment-content">
+            <div class="comment-meta-head">
+              <div>
+                <strong class="comment-author-name">${escapeHtml(c.name)}</strong>
+                ${roleHtml}
+              </div>
+              <time class="comment-date">${escapeHtml(c.date)}</time>
+            </div>
+            <p class="comment-text">${escapeHtml(c.text)}</p>
+            ${replyHtml}
+          </div>
+        </article>
+      `;
+    }).join('');
+  };
+
+  if (blogCommentsJump) {
+    blogCommentsJump.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = $('#blog-comments-section');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  if (blogCommentForm) {
+    blogCommentForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!currentBlogKey) return;
+
+      const nameInput = $('#comment-name');
+      const roleInput = $('#comment-role');
+      const textInput = $('#comment-text');
+
+      const name = nameInput ? nameInput.value.trim() : '';
+      const role = roleInput ? roleInput.value.trim() : '';
+      const text = textInput ? textInput.value.trim() : '';
+
+      if (!name || !text) {
+        if (blogCommentFeedback) {
+          blogCommentFeedback.textContent = 'Por favor completa tu nombre y comentario.';
+          blogCommentFeedback.className = 'blog-comment-feedback is-error';
+        }
+        return;
+      }
+
+      const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+      const now = new Date();
+      const dateStr = `${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+
+      const newComment = {
+        name,
+        role: role || 'Lector de la Comunidad',
+        date: dateStr,
+        text
+      };
+
+      saveStoredComment(currentBlogKey, newComment);
+      renderBlogComments(currentBlogKey, true);
+
+      if (textInput) textInput.value = '';
+      if (blogCommentFeedback) {
+        blogCommentFeedback.textContent = '✓ ¡Gracias! Tu comentario se ha publicado en esta entrada.';
+        blogCommentFeedback.className = 'blog-comment-feedback is-success';
+      }
+    });
+  }
 
   const openBlogModal = (key) => {
     const post = blogPostsData[key];
@@ -443,6 +633,12 @@
     if (blogModalReadtime) blogModalReadtime.textContent = post.readTime;
     if (blogModalTitle) blogModalTitle.textContent = post.title;
     if (blogModalBody) blogModalBody.innerHTML = post.body;
+
+    if (blogCommentFeedback) {
+      blogCommentFeedback.textContent = '';
+      blogCommentFeedback.className = 'blog-comment-feedback';
+    }
+    renderBlogComments(key, false);
 
     if (blogModalCta && blogModalCtaText) {
       blogModalCtaText.textContent = post.ctaText || 'Cotizar proyecto similar';

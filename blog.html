@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="./styles.css?v=1.1.1">
+  <link rel="stylesheet" href="./styles.css?v=1.1.2">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0d0a'/%3E%3Ctext x='32' y='42' fill='%23c4b38a' font-family='Georgia' font-size='35' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
 </head>
 <body class="blog-page">
@@ -339,9 +339,55 @@
             <span id="blog-modal-readtime">4 min de lectura</span>
             <span>·</span>
             <span>Por <strong>KAM DESIGN®</strong></span>
+            <span>·</span>
+            <a href="#blog-comments-section" class="blog-modal-comments-jump" id="blog-modal-comments-jump">💬 <span id="blog-modal-comments-topcount">2</span> comentarios</a>
           </div>
           <h2 class="blog-modal-title" id="blog-modal-title">Título del Artículo</h2>
           <div class="blog-modal-body" id="blog-modal-body"></div>
+
+          <!-- Sección de Comentarios por Entrada -->
+          <section class="blog-comments-section" id="blog-comments-section" aria-labelledby="blog-comments-heading">
+            <div class="blog-comments-head">
+              <div>
+                <span class="section-kicker"><span class="kicker-index">COMUNIDAD &amp; DIÁLOGO /</span> FORO EDITORIAL</span>
+                <h3 id="blog-comments-heading">Comentarios de la entrada <span class="comments-count-pill" id="blog-comments-count">0</span></h3>
+              </div>
+              <p class="blog-comments-subtitle">Comparte tu opinión técnica, dudas sobre el flujo de trabajo o experiencia con las herramientas mencionadas.</p>
+            </div>
+
+            <!-- Lista dinámica de comentarios -->
+            <div class="blog-comments-list" id="blog-comments-list" aria-live="polite"></div>
+
+            <!-- Formulario para nuevo comentario -->
+            <form class="blog-comment-form" id="blog-comment-form" novalidate>
+              <div class="blog-comment-form-head">
+                <h4>Publicar un comentario</h4>
+                <span>Tu comentario aparecerá al instante en esta entrada</span>
+              </div>
+              <div class="blog-comment-fields-row">
+                <div class="blog-comment-field">
+                  <label for="comment-name">Nombre o Alias *</label>
+                  <input type="text" id="comment-name" name="name" placeholder="Ej. Arq. Sofía Vega" required maxlength="60">
+                </div>
+                <div class="blog-comment-field">
+                  <label for="comment-role">Especialidad / Estudio <span>(opcional)</span></label>
+                  <input type="text" id="comment-role" name="role" placeholder="Ej. Arquitecta · Estudio SV" maxlength="60">
+                </div>
+              </div>
+              <div class="blog-comment-field">
+                <label for="comment-text">Comentario o consulta *</label>
+                <textarea id="comment-text" name="comment" rows="3" placeholder="Escribe aquí tu comentario sobre este artículo..." required maxlength="800"></textarea>
+              </div>
+              <div class="blog-comment-form-foot">
+                <span class="blog-comment-feedback" id="blog-comment-feedback" aria-live="polite"></span>
+                <button type="submit" class="blog-comment-submit">
+                  <span>Publicar comentario</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            </form>
+          </section>
+
           <div class="blog-modal-footer">
             <div class="blog-modal-nav">
               <button class="blog-modal-nav-btn" id="blog-modal-prev" type="button">← Artículo anterior</button>
@@ -357,6 +403,6 @@
     </div>
   </div>
 
-  <script defer src="./script.js?v=1.1.1"></script>
+  <script defer src="./script.js?v=1.1.2"></script>
 </body>
 </html>
