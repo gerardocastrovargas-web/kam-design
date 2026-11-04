@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="./styles.css?v=1.1.2">
+  <link rel="stylesheet" href="./styles.css?v=1.1.3">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230b0d0a'/%3E%3Ctext x='32' y='42' fill='%23c4b38a' font-family='Georgia' font-size='35' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
 </head>
 <body class="blog-page">
@@ -348,11 +348,26 @@
           <!-- Sección de Comentarios por Entrada -->
           <section class="blog-comments-section" id="blog-comments-section" aria-labelledby="blog-comments-heading">
             <div class="blog-comments-head">
-              <div>
-                <span class="section-kicker"><span class="kicker-index">COMUNIDAD &amp; DIÁLOGO /</span> FORO EDITORIAL</span>
-                <h3 id="blog-comments-heading">Comentarios de la entrada <span class="comments-count-pill" id="blog-comments-count">0</span></h3>
+              <div class="blog-comments-head-top">
+                <div>
+                  <span class="section-kicker"><span class="kicker-index">COMUNIDAD &amp; DIÁLOGO /</span> FORO EDITORIAL</span>
+                  <h3 id="blog-comments-heading">Comentarios de la entrada <span class="comments-count-pill" id="blog-comments-count">0</span></h3>
+                </div>
+                <button type="button" class="blog-mod-toggle" id="blog-mod-toggle" aria-expanded="false">
+                  🔒 Moderar
+                </button>
               </div>
               <p class="blog-comments-subtitle">Comparte tu opinión técnica, dudas sobre el flujo de trabajo o experiencia con las herramientas mencionadas.</p>
+
+              <!-- Panel de acceso para Moderador (oculto por defecto) -->
+              <div class="blog-mod-auth-box" id="blog-mod-auth-box" hidden>
+                <div class="blog-mod-auth-row">
+                  <input type="password" id="blog-mod-pin" placeholder="Ingresa la clave de moderador..." autocomplete="off">
+                  <button type="button" class="blog-mod-login-btn" id="blog-mod-login-btn">Desbloquear</button>
+                  <button type="button" class="blog-mod-reset-btn" id="blog-mod-reset-btn" hidden title="Restaurar comentarios por defecto de esta entrada">↺ Restaurar originales</button>
+                </div>
+                <span class="blog-mod-status" id="blog-mod-status"></span>
+              </div>
             </div>
 
             <!-- Lista dinámica de comentarios -->
@@ -403,6 +418,6 @@
     </div>
   </div>
 
-  <script defer src="./script.js?v=1.1.2"></script>
+  <script defer src="./script.js?v=1.1.3"></script>
 </body>
 </html>

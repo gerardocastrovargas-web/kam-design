@@ -461,9 +461,18 @@
     }
   };
 
-  const COMMENTS_STORAGE_KEY = 'kam_blog_comments_v1';
+  const COMMENTS_STORAGE_KEY = 'kam_blog_comments_v2';
+  const MODERATOR_KEY = 'MaketeroKam2026';
+  const MOD_SESSION_KEY = 'kam_blog_mod_active';
 
-  const getStoredComments = () => {
+  let isModerator = false;
+  try {
+    isModerator = sessionStorage.getItem(MOD_SESSION_KEY) === '1';
+  } catch {
+    isModerator = false;
+  }
+
+  const getStoredCommentsMap = () => {
     try {
       const raw = localStorage.getItem(COMMENTS_STORAGE_KEY);
       return raw ? JSON.parse(raw) : {};
@@ -472,14 +481,33 @@
     }
   };
 
-  const saveStoredComment = (postKey, commentObj) => {
+  const getPostComments = (postKey) => {
+    const post = blogPostsData[postKey];
+    if (!post) return [];
+    const map = getStoredCommentsMap();
+    if (Array.isArray(map[postKey])) {
+      return map[postKey];
+    }
+    return (post.comments || []).map(c => ({ ...c }));
+  };
+
+  const setPostComments = (postKey, commentsArray) => {
     try {
-      const all = getStoredComments();
-      if (!Array.isArray(all[postKey])) all[postKey] = [];
-      all[postKey].push(commentObj);
-      localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(all));
+      const map = getStoredCommentsMap();
+      map[postKey] = commentsArray;
+      localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(map));
     } catch (err) {
-      console.error('Could not save comment:', err);
+      console.error('Could not save comments:', err);
+    }
+  };
+
+  const resetPostComments = (postKey) => {
+    try {
+      const map = getStoredCommentsMap();
+      delete map[postKey];
+      localStorage.setItem(COMMENTS_STORAGE_KEY, JSON.stringify(map));
+    } catch (err) {
+      console.error('Could not reset comments:', err);
     }
   };
 
@@ -521,18 +549,47 @@
   const blogCommentForm = $('#blog-comment-form');
   const blogCommentFeedback = $('#blog-comment-feedback');
 
+  // Moderator UI elements
+  const blogModToggle = $('#blog-mod-toggle');
+  const blogModAuthBox = $('#blog-mod-auth-box');
+  const blogModPin = $('#blog-mod-pin');
+  const blogModLoginBtn = $('#blog-mod-login-btn');
+  const blogModResetBtn = $('#blog-mod-reset-btn');
+  const blogModStatus = $('#blog-mod-status');
+
+  const syncModeratorUI = () => {
+    if (!blogModToggle) return;
+    if (isModerator) {
+      blogModToggle.textContent = '🔓 Moderador Activo · Salir';
+      blogModToggle.classList.add('is-active');
+      if (blogModResetBtn) blogModResetBtn.hidden = false;
+      if (blogModAuthBox) blogModAuthBox.hidden = false;
+      if (blogModPin) blogModPin.hidden = true;
+      if (blogModLoginBtn) blogModLoginBtn.hidden = true;
+      if (blogModStatus) {
+        blogModStatus.textContent = 'Modo moderador activo: puedes eliminar o responder cualquier comentario.';
+        blogModStatus.className = 'blog-mod-status is-ok';
+      }
+    } else {
+      blogModToggle.textContent = '🔒 Moderar';
+      blogModToggle.classList.remove('is-active');
+      if (blogModResetBtn) blogModResetBtn.hidden = true;
+      if (blogModPin) blogModPin.hidden = false;
+      if (blogModLoginBtn) blogModLoginBtn.hidden = false;
+    }
+  };
+
   const renderBlogComments = (key, highlightLast = false) => {
     const post = blogPostsData[key];
     if (!post || !blogCommentsList) return;
 
-    const stored = getStoredComments()[key] || [];
-    const merged = [...(post.comments || []), ...stored];
+    const merged = getPostComments(key);
 
     if (blogCommentsCount) blogCommentsCount.textContent = String(merged.length);
     if (blogCommentsTopCount) blogCommentsTopCount.textContent = String(merged.length);
 
     if (!merged.length) {
-      blogCommentsList.innerHTML = `<p class="blog-comments-empty">Sé el primero en comentar esta entrada.</p>`;
+      blogCommentsList.innerHTML = `<p class="blog-comments-empty">No hay comentarios en esta entrada aún. ¡Sé el primero en comentar!</p>`;
       return;
     }
 
@@ -545,6 +602,24 @@
           <p>${escapeHtml(c.reply)}</p>
         </div>
       ` : '';
+      const modActionsHtml = isModerator ? `
+        <div class="comment-mod-actions">
+          <button type="button" class="comment-mod-btn is-reply" data-reply-toggle="${idx}">
+            ↩ ${c.reply ? 'Editar respuesta KAM' : 'Responder como KAM DESIGN®'}
+          </button>
+          <button type="button" class="comment-mod-btn is-delete" data-delete-idx="${idx}">
+            ✕ Eliminar comentario
+          </button>
+        </div>
+        <div class="comment-reply-editor" id="comment-reply-editor-${idx}" hidden>
+          <textarea rows="2" id="comment-reply-input-${idx}" placeholder="Escribe la respuesta oficial de KAM DESIGN®...">${escapeHtml(c.reply || '')}</textarea>
+          <div class="comment-reply-editor-btns">
+            <button type="button" class="comment-mod-btn is-save" data-reply-save="${idx}">Guardar respuesta</button>
+            ${c.reply ? `<button type="button" class="comment-mod-btn is-delete" data-reply-remove="${idx}">Borrar respuesta</button>` : ''}
+          </div>
+        </div>
+      ` : '';
+
       return `
         <article class="blog-comment-item${isNew ? ' is-new-comment' : ''}">
           <div class="comment-avatar" aria-hidden="true">${escapeHtml(getInitials(c.name))}</div>
@@ -558,11 +633,129 @@
             </div>
             <p class="comment-text">${escapeHtml(c.text)}</p>
             ${replyHtml}
+            ${modActionsHtml}
           </div>
         </article>
       `;
     }).join('');
   };
+
+  if (blogCommentsList) {
+    blogCommentsList.addEventListener('click', (e) => {
+      if (!isModerator || !currentBlogKey) return;
+      const target = e.target.closest('button');
+      if (!target) return;
+
+      if (target.hasAttribute('data-delete-idx')) {
+        const idx = Number(target.getAttribute('data-delete-idx'));
+        const list = getPostComments(currentBlogKey);
+        if (idx >= 0 && idx < list.length) {
+          list.splice(idx, 1);
+          setPostComments(currentBlogKey, list);
+          renderBlogComments(currentBlogKey, false);
+        }
+        return;
+      }
+
+      if (target.hasAttribute('data-reply-toggle')) {
+        const idx = target.getAttribute('data-reply-toggle');
+        const editor = $(`#comment-reply-editor-${idx}`);
+        if (editor) {
+          editor.hidden = !editor.hidden;
+          if (!editor.hidden) {
+            const input = $(`#comment-reply-input-${idx}`);
+            if (input) input.focus();
+          }
+        }
+        return;
+      }
+
+      if (target.hasAttribute('data-reply-save')) {
+        const idx = Number(target.getAttribute('data-reply-save'));
+        const input = $(`#comment-reply-input-${idx}`);
+        const list = getPostComments(currentBlogKey);
+        if (input && list[idx]) {
+          list[idx].reply = input.value.trim();
+          setPostComments(currentBlogKey, list);
+          renderBlogComments(currentBlogKey, false);
+        }
+        return;
+      }
+
+      if (target.hasAttribute('data-reply-remove')) {
+        const idx = Number(target.getAttribute('data-reply-remove'));
+        const list = getPostComments(currentBlogKey);
+        if (list[idx]) {
+          delete list[idx].reply;
+          setPostComments(currentBlogKey, list);
+          renderBlogComments(currentBlogKey, false);
+        }
+      }
+    });
+  }
+
+  if (blogModToggle) {
+    blogModToggle.addEventListener('click', () => {
+      if (isModerator) {
+        isModerator = false;
+        try { sessionStorage.removeItem(MOD_SESSION_KEY); } catch {}
+        if (blogModAuthBox) blogModAuthBox.hidden = true;
+        if (blogModStatus) blogModStatus.textContent = '';
+        syncModeratorUI();
+        if (currentBlogKey) renderBlogComments(currentBlogKey, false);
+        return;
+      }
+
+      if (blogModAuthBox) {
+        blogModAuthBox.hidden = !blogModAuthBox.hidden;
+        blogModToggle.setAttribute('aria-expanded', blogModAuthBox.hidden ? 'false' : 'true');
+        if (!blogModAuthBox.hidden && blogModPin) {
+          blogModPin.value = '';
+          blogModPin.focus();
+        }
+      }
+    });
+  }
+
+  const attemptModeratorUnlock = () => {
+    if (!blogModPin) return;
+    const val = blogModPin.value.trim();
+    if (val === MODERATOR_KEY) {
+      isModerator = true;
+      try { sessionStorage.setItem(MOD_SESSION_KEY, '1'); } catch {}
+      blogModPin.value = '';
+      syncModeratorUI();
+      if (currentBlogKey) renderBlogComments(currentBlogKey, false);
+    } else {
+      if (blogModStatus) {
+        blogModStatus.textContent = 'Clave incorrecta. Inténtalo de nuevo.';
+        blogModStatus.className = 'blog-mod-status is-err';
+      }
+    }
+  };
+
+  if (blogModLoginBtn) {
+    blogModLoginBtn.addEventListener('click', attemptModeratorUnlock);
+  }
+  if (blogModPin) {
+    blogModPin.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        attemptModeratorUnlock();
+      }
+    });
+  }
+  if (blogModResetBtn) {
+    blogModResetBtn.addEventListener('click', () => {
+      if (!currentBlogKey) return;
+      resetPostComments(currentBlogKey);
+      renderBlogComments(currentBlogKey, false);
+      if (blogModStatus) {
+        blogModStatus.textContent = '✓ Comentarios originales restaurados en esta entrada.';
+        blogModStatus.className = 'blog-mod-status is-ok';
+      }
+    });
+  }
 
   if (blogCommentsJump) {
     blogCommentsJump.addEventListener('click', (e) => {
@@ -604,7 +797,9 @@
         text
       };
 
-      saveStoredComment(currentBlogKey, newComment);
+      const currentList = getPostComments(currentBlogKey);
+      currentList.push(newComment);
+      setPostComments(currentBlogKey, currentList);
       renderBlogComments(currentBlogKey, true);
 
       if (textInput) textInput.value = '';
@@ -638,6 +833,7 @@
       blogCommentFeedback.textContent = '';
       blogCommentFeedback.className = 'blog-comment-feedback';
     }
+    syncModeratorUI();
     renderBlogComments(key, false);
 
     if (blogModalCta && blogModalCtaText) {
